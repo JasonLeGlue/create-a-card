@@ -17,6 +17,8 @@ export const CardForm = () => {
     quoteText: "",
     imageUrl: "",
     htmlCss: "",
+    power: 0,
+    toughness: 0,
   });
 
   const [colorlessManaCosts, setColorlessManaCosts] = useState([]);
@@ -40,6 +42,8 @@ export const CardForm = () => {
       quoteText: card.quoteText,
       imageUrl: card.imageUrl,
       htmlCss: card.htmlCss,
+      power: card.power,
+      toughness: card.toughness,
     };
 
     createCard(editedCard);
@@ -165,6 +169,27 @@ export const CardForm = () => {
             setCard(copy);
           }}
           required
+        />
+        <label>Power:</label>
+        <input
+          type="number"
+          value={card.power}
+          onChange={(event) => {
+            const copy = { ...card };
+            copy.power = event.target.value;
+            setCard(copy);
+          }}
+        />
+
+        <label>Toughness:</label>
+        <input
+          type="number"
+          value={card.toughness}
+          onChange={(event) => {
+            const copy = { ...card };
+            copy.toughness = event.target.value;
+            setCard(copy);
+          }}
         />
         <button onClick={handleCreation}>Create Card</button>
       </form>
