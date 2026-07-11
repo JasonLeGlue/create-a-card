@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+  getColorManaCosts,
+  getColorlessManaCosts,
+} from "../../services/costService.js";
 
 export const CardForm = () => {
   const [card, setCard] = useState({
@@ -26,6 +30,15 @@ export const CardForm = () => {
     imageUrl: card.imageUrl,
     htmlCss: card.htmlCss,
   };
+
+  const [colorlessManaCosts, setColorlessManaCosts] = useState([]);
+  const [colorManaCosts, setColorManaCosts] = useState([]);
+
+  useEffect(() => {
+    getColorlessManaCosts().then(setColorlessManaCosts);
+    getColorManaCosts().then(setColorManaCosts);
+  }, []);
+
   return (
     <>
       <form>
@@ -41,8 +54,38 @@ export const CardForm = () => {
           required
         />
 
-        <label>Colorless Cost:</label>
-        <select></select>
+        <label>Colorless Mana Cost:</label>
+        <select>
+          {colorlessManaCosts.map((cost) => (
+            <option key={cost.id} value={cost.icon}>
+              {cost.description}
+            </option>
+          ))}
+        </select>
+        <label>Color Mana Cost 1:</label>
+        <select>
+          {colorManaCosts.map((cost) => (
+            <option key={cost.id} value={cost.icon}>
+              {cost.description}
+            </option>
+          ))}
+        </select>
+        <label>Color Mana Cost 2:</label>
+        <select>
+          {colorManaCosts.map((cost) => (
+            <option key={cost.id} value={cost.icon}>
+              {cost.description}
+            </option>
+          ))}
+        </select>
+        <label>Color Mana Cost 3:</label>
+        <select>
+          {colorManaCosts.map((cost) => (
+            <option key={cost.id} value={cost.icon}>
+              {cost.description}
+            </option>
+          ))}
+        </select>
 
         <label>Type Line:</label>
         <input

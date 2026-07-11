@@ -5,13 +5,6 @@ import "./App.css";
 function App() {
   return (
     <>
-      <head>
-        <link
-          href="//cdn.jsdelivr.net/npm/mana-font@latest/css/mana.css"
-          rel="stylesheet"
-          type="text/css"
-        />
-      </head>
       <CardForm></CardForm>
     </>
   );
