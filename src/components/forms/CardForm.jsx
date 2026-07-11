@@ -3,6 +3,7 @@ import {
   getColorManaCosts,
   getColorlessManaCosts,
 } from "../../services/costService.js";
+import { createCard } from "../../services/cardService.js";
 
 export const CardForm = () => {
   const [card, setCard] = useState({
@@ -18,19 +19,6 @@ export const CardForm = () => {
     htmlCss: "",
   });
 
-  const editedCard = {
-    name: card.name,
-    colorlessCost: card.colorlessCost,
-    colorCost1: card.colorCost1,
-    colorCost2: card.colorCost2,
-    typeLine: card.typeLine,
-    abilityText: card.abilityText,
-    descriptionText: card.descriptionText,
-    quoteText: card.quoteText,
-    imageUrl: card.imageUrl,
-    htmlCss: card.htmlCss,
-  };
-
   const [colorlessManaCosts, setColorlessManaCosts] = useState([]);
   const [colorManaCosts, setColorManaCosts] = useState([]);
 
@@ -38,6 +26,24 @@ export const CardForm = () => {
     getColorlessManaCosts().then(setColorlessManaCosts);
     getColorManaCosts().then(setColorManaCosts);
   }, []);
+
+  //navigate to card details page when created
+  const handleCreation = (event) => {
+    const editedCard = {
+      name: card.name,
+      colorlessCost: card.colorlessCost,
+      colorCost1: card.colorCost1,
+      colorCost2: card.colorCost2,
+      typeLine: card.typeLine,
+      abilityText: card.abilityText,
+      descriptionText: card.descriptionText,
+      quoteText: card.quoteText,
+      imageUrl: card.imageUrl,
+      htmlCss: card.htmlCss,
+    };
+
+    createCard(editedCard);
+  };
 
   return (
     <>
@@ -53,33 +59,47 @@ export const CardForm = () => {
           }}
           required
         />
-
         <label>Colorless Mana Cost:</label>
         <select>
+          <option key="0" value="">
+            None
+          </option>
           {colorlessManaCosts.map((cost) => (
             <option key={cost.id} value={cost.icon}>
               {cost.description}
             </option>
           ))}
         </select>
+
         <label>Color Mana Cost 1:</label>
         <select>
+          <option key="0" value="">
+            None
+          </option>
           {colorManaCosts.map((cost) => (
             <option key={cost.id} value={cost.icon}>
               {cost.description}
             </option>
           ))}
         </select>
+
         <label>Color Mana Cost 2:</label>
         <select>
+          <option key="0" value="">
+            None
+          </option>
           {colorManaCosts.map((cost) => (
             <option key={cost.id} value={cost.icon}>
               {cost.description}
             </option>
           ))}
         </select>
+
         <label>Color Mana Cost 3:</label>
         <select>
+          <option key="0" value="">
+            None
+          </option>
           {colorManaCosts.map((cost) => (
             <option key={cost.id} value={cost.icon}>
               {cost.description}
@@ -146,7 +166,7 @@ export const CardForm = () => {
           }}
           required
         />
-        <button></button>
+        <button onClick={handleCreation}>Create Card</button>
       </form>
     </>
   );
