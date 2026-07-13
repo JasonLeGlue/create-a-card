@@ -5,12 +5,32 @@ import {
 } from "../../services/costService.js";
 import { createCard } from "../../services/cardService.js";
 
+import { Card } from "../card/Card.jsx";
+import { getCardById } from "../../services/cardService.js";
+
 export const CardForm = () => {
   const [card, setCard] = useState({
     name: "",
     colorlessCost: 0,
     colorCost1: 0,
     colorCost2: 0,
+    colorCost3: 0,
+    typeLine: "",
+    abilityText: "",
+    descriptionText: "",
+    quoteText: "",
+    imageUrl: "",
+    htmlCss: "",
+    power: 0,
+    toughness: 0,
+  });
+
+  const [cardObj, setCardObj] = useState({
+    name: "",
+    colorlessCost: 0,
+    colorCost1: 0,
+    colorCost2: 0,
+    colorCost3: 0,
     typeLine: "",
     abilityText: "",
     descriptionText: "",
@@ -27,6 +47,7 @@ export const CardForm = () => {
   useEffect(() => {
     getColorlessManaCosts().then(setColorlessManaCosts);
     getColorManaCosts().then(setColorManaCosts);
+    getCardById(2).then(setCardObj);
   }, []);
 
   //navigate to card details page when created
@@ -36,6 +57,7 @@ export const CardForm = () => {
       colorlessCost: card.colorlessCost,
       colorCost1: card.colorCost1,
       colorCost2: card.colorCost2,
+      colorCost3: card.colorCost3,
       typeLine: card.typeLine,
       abilityText: card.abilityText,
       descriptionText: card.descriptionText,
@@ -51,6 +73,12 @@ export const CardForm = () => {
 
   return (
     <>
+      <link
+        href="//cdn.jsdelivr.net/npm/mana-font@latest/css/mana.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <Card cardObj={cardObj} />;<i class="ms ms-2 ms-cost"></i>
       <form>
         <label>Card Name:</label>
         <input
@@ -64,7 +92,13 @@ export const CardForm = () => {
           required
         />
         <label>Colorless Mana Cost:</label>
-        <select>
+        <select
+          onChange={(event) => {
+            const copy = { ...card };
+            copy.colorlessCost = event.target.value;
+            setCard(copy);
+          }}
+        >
           <option key="0" value="">
             None
           </option>
@@ -76,7 +110,13 @@ export const CardForm = () => {
         </select>
 
         <label>Color Mana Cost 1:</label>
-        <select>
+        <select
+          onChange={(event) => {
+            const copy = { ...card };
+            copy.colorCost1 = event.target.value;
+            setCard(copy);
+          }}
+        >
           <option key="0" value="">
             None
           </option>
@@ -88,7 +128,13 @@ export const CardForm = () => {
         </select>
 
         <label>Color Mana Cost 2:</label>
-        <select>
+        <select
+          onChange={(event) => {
+            const copy = { ...card };
+            copy.colorCost2 = event.target.value;
+            setCard(copy);
+          }}
+        >
           <option key="0" value="">
             None
           </option>
@@ -100,7 +146,13 @@ export const CardForm = () => {
         </select>
 
         <label>Color Mana Cost 3:</label>
-        <select>
+        <select
+          onChange={(event) => {
+            const copy = { ...card };
+            copy.colorCost3 = event.target.value;
+            setCard(copy);
+          }}
+        >
           <option key="0" value="">
             None
           </option>
