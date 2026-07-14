@@ -14,7 +14,7 @@ export const Card = ({ cardObj }) => {
     getManaObjById(cardObj.colorCost1).then(setColorMana1);
     getManaObjById(cardObj.colorCost2).then(setColorMana2);
     getManaObjById(cardObj.colorCost3).then(setColorMana3);
-  });
+  }, [cardObj]);
 
   return (
     <>
@@ -28,21 +28,21 @@ export const Card = ({ cardObj }) => {
             <i className={colorMana3.icon}></i>
           </div>
         </div>
-        <div className="centerContent">
-          <img className="cardImage" src={cardObj.imgUrl} />
-          <div className="textContainer">
-            {cardObj.typeLine}
-            {cardObj.abilityText}
-            {cardObj.descriptionText}
-            {cardObj.quoteText}
-          </div>
+        <div className="imageContainer">
+          <img className="cardImage" src={cardObj.imageUrl}></img>
+        </div>
+
+        <div className="typeContainer">{cardObj.typeLine}</div>
+        <div className="textContainer">
+          <p>{cardObj.abilityText}</p>
+          <p>{cardObj.descriptionText}</p>
+          <p>"{cardObj.quoteText}"</p>
         </div>
         <div className="bottomLine">
-          <a className="creatorUsername"></a>
+          <a className="creatorUsername">TestName</a>
           <div className="powerToughness">
             <p>
-              {cardObj.power}
-              {cardObj.toughness}
+              {cardObj.power} / {cardObj.toughness}
             </p>
           </div>
         </div>

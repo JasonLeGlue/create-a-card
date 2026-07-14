@@ -1,3 +1,40 @@
-.topline {
+.cardContainer {
+    background-color: white;
+    border: .5rem black solid;
+    max-width: 50%;
+}
+
+.topLine {
     display: flex;
+    justify-content: space-between;
+    border: .1rem black solid;
+    border-radius: .2rem;
+    margin: .2rem;
+    padding: .05rem;
+}
+
+.cardImage {
+    max-width: 50%;
+}
+
+.typeContainer {
+    border: .1rem black solid;
+    text-align: left;
+    margin: .2rem;
+    padding: .05rem;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: .1rem black solid;
+    margin: .2rem;
+    padding: .05rem;
+}
+
+.bottomLine {
+    display: flex;
+    justify-content: space-between;
+    margin: .2rem;
 }

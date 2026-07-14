@@ -73,7 +73,7 @@ export const CardForm = () => {
 
   return (
     <>
-      <Card cardObj={cardObj} />;<i className="ms ms-2 ms-cost"></i>
+      <Card cardObj={cardObj} />;
       <form>
         <label>Card Name:</label>
         <input
