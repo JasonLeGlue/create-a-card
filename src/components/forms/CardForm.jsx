@@ -73,12 +73,7 @@ export const CardForm = () => {
 
   return (
     <>
-      <link
-        href="//cdn.jsdelivr.net/npm/mana-font@latest/css/mana.css"
-        rel="stylesheet"
-        type="text/css"
-      />
-      <Card cardObj={cardObj} />;<i class="ms ms-2 ms-cost"></i>
+      <Card cardObj={cardObj} />;<i className="ms ms-2 ms-cost"></i>
       <form>
         <label>Card Name:</label>
         <input
@@ -91,6 +86,7 @@ export const CardForm = () => {
           }}
           required
         />
+
         <label>Colorless Mana Cost:</label>
         <select
           onChange={(event) => {
@@ -103,7 +99,7 @@ export const CardForm = () => {
             None
           </option>
           {colorlessManaCosts.map((cost) => (
-            <option key={cost.id} value={cost.icon}>
+            <option key={cost.id} value={cost.id}>
               {cost.description}
             </option>
           ))}
@@ -121,7 +117,7 @@ export const CardForm = () => {
             None
           </option>
           {colorManaCosts.map((cost) => (
-            <option key={cost.id} value={cost.icon}>
+            <option key={cost.id} value={cost.id}>
               {cost.description}
             </option>
           ))}
@@ -139,7 +135,7 @@ export const CardForm = () => {
             None
           </option>
           {colorManaCosts.map((cost) => (
-            <option key={cost.id} value={cost.icon}>
+            <option key={cost.id} value={cost.id}>
               {cost.description}
             </option>
           ))}
@@ -157,7 +153,7 @@ export const CardForm = () => {
             None
           </option>
           {colorManaCosts.map((cost) => (
-            <option key={cost.id} value={cost.icon}>
+            <option key={cost.id} value={cost.id}>
               {cost.description}
             </option>
           ))}

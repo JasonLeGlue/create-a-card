@@ -9,3 +9,9 @@ export const getColorManaCosts = () => {
     res.json(),
   );
 };
+
+export const getManaObjById = (manaId) => {
+  return fetch(`http://localhost:8088/manaCosts/${manaId}`).then((res) =>
+    res.json(),
+  );
+};
