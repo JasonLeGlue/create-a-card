@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CardForm } from "./components/forms/CardForm.jsx";
+import { CardDisplay } from "./components/card display/CardDisplay.jsx";
 import "./App.css";
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
         rel="stylesheet"
         type="text/css"
       />
-      <CardForm></CardForm>
+      <CardDisplay></CardDisplay>
     </>
   );
 }
