@@ -4,16 +4,18 @@ import { useEffect, useState } from "react";
 import HTMLReactParser from "html-react-parser/lib/index";
 
 export const Card = ({ cardObj }) => {
-  const [colorlessMana, setColorlessMana] = useState({});
-  const [colorMana1, setColorMana1] = useState({});
-  const [colorMana2, setColorMana2] = useState({});
-  const [colorMana3, setColorMana3] = useState({});
+  const [colorlessMana, setColorlessMana] = useState("");
+  const [colorMana1, setColorMana1] = useState({ icon: "" });
+  const [colorMana2, setColorMana2] = useState({ icon: "" });
+  const [colorMana3, setColorMana3] = useState({ icon: "" });
 
   useEffect(() => {
-    getManaObjById(cardObj.colorlessCost).then(setColorlessMana);
-    getManaObjById(cardObj.colorCost1).then(setColorMana1);
-    getManaObjById(cardObj.colorCost2).then(setColorMana2);
-    getManaObjById(cardObj.colorCost3).then(setColorMana3);
+    if (cardObj.id) {
+      getManaObjById(cardObj.colorlessCost).then(setColorlessMana);
+      getManaObjById(cardObj.colorCost1).then(setColorMana1);
+      getManaObjById(cardObj.colorCost2).then(setColorMana2);
+      getManaObjById(cardObj.colorCost3).then(setColorMana3);
+    }
   }, [cardObj]);
 
   return (
