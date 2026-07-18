@@ -16,7 +16,7 @@ export const Card = ({ cardObj }) => {
       getManaObjById(cardObj.colorCost2).then(setColorMana2);
       getManaObjById(cardObj.colorCost3).then(setColorMana3);
     }
-  }, [cardObj]);
+  }, []);
 
   return (
     <>

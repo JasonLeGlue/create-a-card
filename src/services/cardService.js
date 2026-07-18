@@ -12,3 +12,9 @@ export const getCardById = (cardId) => {
     res.json(),
   );
 };
+
+export const deleteCardById = (cardId) => {
+  return fetch(`http://localhost:8088/cards/${cardId}`, {
+    method: "DELETE",
+  });
+};
