@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "../card/Card.jsx";
 import { getRecentCards } from "../../services/cardService.js";
+import "./Explore.css";
 
 export const Explore = () => {
   const [cards, setCards] = useState([]);
@@ -12,13 +13,9 @@ export const Explore = () => {
   return (
     <>
       <h2>Explore</h2>
-      <div className="cardsDisplayContainer">
+      <div className="exploreCards">
         {cards.map((cardObj) => {
-          return (
-            <div className="cardContainer">
-              <Card cardObj={cardObj} key={cardObj.id} />;
-            </div>
-          );
+          return <Card cardObj={cardObj} key={cardObj.id} />;
         })}
       </div>
     </>

@@ -37,6 +37,7 @@ export const Card = ({ cardObj }) => {
         <div className="typeContainer">{cardObj.typeLine}</div>
         <div className="textContainer">
           <p>{cardObj.abilityText}</p>
+          <br></br>
           <p>{cardObj.descriptionText}</p>
           <p>"{cardObj.quoteText}"</p>
         </div>
