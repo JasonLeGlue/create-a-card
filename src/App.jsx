@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { CardForm } from "./components/forms/CardForm.jsx";
-import { CardDisplay } from "./components/card display/CardDisplay.jsx";
 import { Route, Routes, Outlet } from "react-router-dom";
 import { Login } from "./components/auth/Login.jsx";
 import { Register } from "./components/auth/Register.jsx";

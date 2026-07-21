@@ -1,9 +1,9 @@
-import "./CardDisplay.css";
+import "./CardDetails.css";
 import { useState, useEffect } from "react";
 import { deleteCardById, getCardById } from "../../services/cardService.js";
 import { addCardToBinder } from "../../services/binderService.js";
 import { addCardToFaves } from "../../services/faveService.js";
-import { Card } from "../card/Card.jsx";
+import { Card } from "./Card.jsx";
 
 export const CardDisplay = () => {
   const [cardObj, setCardObj] = useState({});
@@ -25,10 +25,10 @@ export const CardDisplay = () => {
 
   const handleSave = (event) => {
     const user = JSON.parse(localStorage.getItem("card_user"));
-    console.log(user);
     const data = { userId: user.id, cardId: cardObj.id };
 
     if (user.id === cardObj.userId) {
+      //if card made by current user
       let binderResponse = confirm(
         "Do you want to add this card to your binder?",
       );
@@ -38,12 +38,11 @@ export const CardDisplay = () => {
         return;
       }
     } else {
-      console.log("Not made by this user.");
+      //if card made by another user
       let faveResponse = confirm(
         "Do you want to add this card to your favorites?",
       );
       if (faveResponse) {
-        console.log("add to faves");
         addCardToFaves(data);
       } else {
         return;
