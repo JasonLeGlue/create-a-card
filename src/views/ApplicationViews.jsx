@@ -7,7 +7,7 @@ import { Collection } from "../components/collection/Collection.jsx";
 export const ApplicationViews = () => {
   return (
     <>
-      <Favorites />
+      <Collection />
     </>
   );
 };
