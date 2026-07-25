@@ -24,3 +24,9 @@ export const getRecentCards = () => {
     "http://localhost:8088/cards/?_sort=id&_order=desc&_limit=20",
   ).then((res) => res.json());
 };
+
+export const getCollectionByUserId = (userId) => {
+  return fetch(`http://localhost:8088/cards?userId=${userId}`).then((res) =>
+    res.json(),
+  );
+};

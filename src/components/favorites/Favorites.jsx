@@ -6,7 +6,6 @@ import "./Favorites.css";
 
 export const Favorites = () => {
   const [faveCards, setFaveCards] = useState([]);
-  // const [displayCards, setDisplayCards] = useState([]);
 
   // look into promise.all, await .
   //check 404 error in console
@@ -22,34 +21,9 @@ export const Favorites = () => {
     });
   };
 
-  // const getAndSetDisplayCards = () => {
-  //   const cardArray = [];
-  //   if (faveCards) {
-  //     faveCards.map((card) => {
-  //       getCardById(card.cardId).then((res) => {
-  //         cardArray.push(res);
-  //       });
-  //     });
-  //     if (faveCards.length === cardArray.length) {
-  //       setDisplayCards(cardArray);
-  //     }
-  //   }
-  //   console.log(cardArray);
-  // setDisplayCards(cardArray);
-
-  //   console.log("display cards set");
-  //   console.log(displayCards);
-  // };
-
   useEffect(() => {
-    console.log("getAndSetFaves");
     getAndSetFaves();
   }, []);
-
-  // useEffect(() => {
-  //   console.log("faveCards");
-  //   getAndSetDisplayCards();
-  // }, [faveCards]);
 
   return (
     <>
