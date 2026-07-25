@@ -1,0 +1,7 @@
+.favoriteCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: flex-start;
+}
