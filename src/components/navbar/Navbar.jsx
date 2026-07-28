@@ -1,8 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import "./Navbar.css";
 
 export const NavBar = () => {
   const navigate = useNavigate();
+
+  const cardUser = JSON.parse(localStorage.getItem("card_user"));
+
   //need to connect it to user auth for access to profile and login/logout
   return (
     <>
@@ -26,7 +31,7 @@ export const NavBar = () => {
             <Link to="/create">Create-A-Card</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/profile">Profile</Link>
+            <Link to={`/profile/${cardUser.id}`}>Profile</Link>
           </li>
 
           {localStorage.getItem("card_user") ? (

@@ -34,7 +34,7 @@ export const ApplicationViews = () => {
           <Route path="card">
             <Route path=":cardId" element={<CardDetails />} />
           </Route>
-          <Route path="user">
+          <Route path="profile">
             <Route path=":userId" element={<UserProfile />} />
           </Route>
         </Route>
