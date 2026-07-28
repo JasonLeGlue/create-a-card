@@ -7,6 +7,7 @@ import { Collection } from "../components/collection/Collection.jsx";
 import { CardForm } from "../components/forms/CardForm.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { CardDetails } from "../components/card/CardDetails.jsx";
+import { UserProfile } from "../components/UserProfile/UserProfile.jsx";
 
 export const ApplicationViews = () => {
   return (
@@ -32,6 +33,9 @@ export const ApplicationViews = () => {
           <Route path="/create" element={<CardForm />} />
           <Route path="card">
             <Route path=":cardId" element={<CardDetails />} />
+          </Route>
+          <Route path="user">
+            <Route path=":userId" element={<UserProfile />} />
           </Route>
         </Route>
       </Routes>

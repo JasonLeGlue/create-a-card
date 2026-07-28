@@ -7,3 +7,9 @@ export const addCardToBinder = (data) => {
     body: JSON.stringify(data),
   });
 };
+
+export const getBinderByUserId = (userId) => {
+  return fetch(
+    `http://localhost:8088/binders?userId=${userId}&_expand=card`,
+  ).then((res) => res.json());
+};
