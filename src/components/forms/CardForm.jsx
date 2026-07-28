@@ -73,7 +73,6 @@ export const CardForm = () => {
 
   return (
     <>
-      <Card cardObj={cardObj} />;
       <form>
         <label>Card Name:</label>
         <input

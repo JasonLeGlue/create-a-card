@@ -3,14 +3,16 @@ import { useState, useEffect } from "react";
 import { deleteCardById, getCardById } from "../../services/cardService.js";
 import { addCardToBinder } from "../../services/binderService.js";
 import { addCardToFaves } from "../../services/faveService.js";
+import { useParams } from "react-router-dom";
 import { Card } from "./Card.jsx";
 
-export const CardDisplay = () => {
+export const CardDetails = () => {
   const [cardObj, setCardObj] = useState({});
+  const { cardId } = useParams();
 
   //getCardById hardcoded right now
   useEffect(() => {
-    getCardById(3).then(setCardObj);
+    getCardById(cardId).then(setCardObj);
   }, []);
 
   const handleDelete = (event) => {

@@ -12,6 +12,9 @@
     overflow: hidden;
 
 }
+.cardContainer:hover {
+    transform: scale(1.05);
+}
 
 .topLine {
     display: flex;

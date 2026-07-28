@@ -6,6 +6,7 @@ import { Register } from "./components/auth/Register.jsx";
 import "./App.css";
 import { ApplicationViews } from "./views/ApplicationViews.jsx";
 import { Authorized } from "./views/Authorized.jsx";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
