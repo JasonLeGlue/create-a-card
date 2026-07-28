@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getCollectionByUserId } from "../../services/cardService.js";
 import { Card } from "../card/Card.jsx";
 import { FilterBar } from "../filter bar/FilterBar.jsx";
+import { Link } from "react-router-dom";
 import "./Collection.css";
 
 export const Collection = () => {
@@ -43,7 +44,11 @@ export const Collection = () => {
           />
           <div className="collectionCards">
             {filteredCards.map((cardObj) => {
-              return <Card cardObj={cardObj} key={cardObj.id} />;
+              return (
+                <Link to={`/card/${cardObj.id}`}>
+                  <Card cardObj={cardObj} key={cardObj.id} />
+                </Link>
+              );
             })}
           </div>
         </>

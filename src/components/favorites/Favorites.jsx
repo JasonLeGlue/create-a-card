@@ -3,6 +3,7 @@ import { Card } from "../card/Card.jsx";
 import { getFavesByUserId } from "../../services/faveService.js";
 import { getCardById } from "../../services/cardService.js";
 import { FilterBar } from "../filter bar/FilterBar.jsx";
+import { Link } from "react-router-dom";
 import "./Favorites.css";
 
 export const Favorites = () => {
@@ -51,7 +52,11 @@ export const Favorites = () => {
           />
           <div className="favoriteCards">
             {filteredCards.map((faveObj) => {
-              return <Card cardObj={faveObj.card} key={faveObj.card.id} />;
+              return (
+                <Link to={`/card/${faveObj.card.id}`}>
+                  <Card cardObj={faveObj.card} key={faveObj.card.id} />
+                </Link>
+              );
             })}
           </div>
         </>
