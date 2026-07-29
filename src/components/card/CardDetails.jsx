@@ -7,10 +7,9 @@ import { useParams } from "react-router-dom";
 import { Card } from "./Card.jsx";
 
 export const CardDetails = () => {
-  const [cardObj, setCardObj] = useState({});
+  const [cardObj, setCardObj] = useState(null);
   const { cardId } = useParams();
 
-  //getCardById hardcoded right now
   useEffect(() => {
     getCardById(cardId).then(setCardObj);
   }, []);
@@ -54,21 +53,27 @@ export const CardDetails = () => {
   // make sure users can only delete their own cards
   return (
     <>
-      <div className="displayButtons">
-        <button type="button" className="delButton" onClick={handleDelete}>
-          X
-        </button>
-        <button type="button" className="saveButton" onClick={handleSave}>
-          Star
-        </button>
-      </div>
-      <div className="displayCenterContent">
-        <Card cardObj={cardObj}></Card>
-        <p className="description">Description box</p>
-        <button type="button" className="removeButton">
-          Remove
-        </button>
-      </div>
+      {cardObj ? (
+        <>
+          <div className="displayButtons">
+            <button type="button" className="delButton" onClick={handleDelete}>
+              X
+            </button>
+            <button type="button" className="saveButton" onClick={handleSave}>
+              Star
+            </button>
+          </div>
+          <div className="displayCenterContent">
+            <Card cardObj={cardObj}></Card>
+            <p className="description">Description box</p>
+            <button type="button" className="removeButton">
+              Remove
+            </button>
+          </div>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
   );
 };

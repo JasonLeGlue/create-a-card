@@ -8,8 +8,8 @@ export const createCard = (cardObj) => {
   });
 };
 export const getCardById = (cardId) => {
-  return fetch(`http://localhost:8088/cards/${cardId}`).then((res) =>
-    res.json(),
+  return fetch(`http://localhost:8088/cards/${cardId}?_expand=user`).then(
+    (res) => res.json(),
   );
 };
 
@@ -21,12 +21,12 @@ export const deleteCardById = (cardId) => {
 
 export const getRecentCards = () => {
   return fetch(
-    "http://localhost:8088/cards/?_sort=id&_order=desc&_limit=20",
+    "http://localhost:8088/cards/?_sort=id&_order=desc&_limit=20&_expand=user",
   ).then((res) => res.json());
 };
 
 export const getCollectionByUserId = (userId) => {
-  return fetch(`http://localhost:8088/cards?userId=${userId}`).then((res) =>
-    res.json(),
-  );
+  return fetch(
+    `http://localhost:8088/cards?userId=${userId}&_expand=user`,
+  ).then((res) => res.json());
 };

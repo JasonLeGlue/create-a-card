@@ -16,8 +16,3 @@ export const getManaObjById = (manaId) => {
   );
 };
 
-export const getColoredMana = () => {
-  return fetch("http://localhost:8088/manaCosts?id_gte=6").then((res) =>
-    res.json(),
-  );
-};

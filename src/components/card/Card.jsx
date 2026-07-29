@@ -8,6 +8,7 @@ export const Card = ({ cardObj }) => {
   const [colorMana1, setColorMana1] = useState({ icon: "" });
   const [colorMana2, setColorMana2] = useState({ icon: "" });
   const [colorMana3, setColorMana3] = useState({ icon: "" });
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     if (cardObj.id) {
@@ -22,7 +23,9 @@ export const Card = ({ cardObj }) => {
     <>
       <div className="cardContainer">
         <div className="topLine">
-          <div className="cardName">{cardObj.name}</div>
+          <div className="cardName">
+            <p>{cardObj.name}</p>
+          </div>
           <div className="cardCost">
             <i className={colorlessMana.icon}></i>
             <i className={colorMana1.icon}></i>
@@ -34,7 +37,9 @@ export const Card = ({ cardObj }) => {
           <img className="cardImage" src={cardObj.imageUrl}></img>
         </div>
 
-        <div className="typeContainer">{cardObj.typeLine}</div>
+        <div className="typeContainer">
+          <p>{cardObj.typeLine}</p>
+        </div>
         <div className="textContainer">
           <p>{cardObj.abilityText}</p>
           <br></br>
@@ -42,7 +47,7 @@ export const Card = ({ cardObj }) => {
           <p>"{cardObj.quoteText}"</p>
         </div>
         <div className="bottomLine">
-          <a className="creatorUsername">TestName</a>
+          <p className="creatorUsername">{cardObj.user.username}</p>
           <div className="powerToughness">
             <p>
               {cardObj.power} / {cardObj.toughness}

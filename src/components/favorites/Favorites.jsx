@@ -7,23 +7,18 @@ import { Link } from "react-router-dom";
 import "./Favorites.css";
 
 export const Favorites = () => {
-  const [faveCards, setFaveCards] = useState([]);
+  const [formattedFaves, setFormattedFaves] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [manaFilter, setManaFilter] = useState(0);
 
-  // look into promise.all, await .
-  //check 404 error in console
-  // expand cardId in getFaves query *
-  //optional chaining '?'
-
-  const getAndSetFaves = () => {
+  const getAndSetFaves = async () => {
     const cardUser = JSON.parse(localStorage.getItem("card_user"));
-    getFavesByUserId(cardUser.id).then((favesArray) => {
-      setFaveCards(favesArray);
-      console.log("fave cards set");
-      console.log(faveCards);
-    });
+    const favesArray = await getFavesByUserId(cardUser.id);
+    const cards = await Promise.all(
+      favesArray.map((fave) => getCardById(fave.card.id)),
+    );
+    setFormattedFaves(cards);
   };
 
   useEffect(() => {
@@ -31,19 +26,19 @@ export const Favorites = () => {
   }, []);
 
   useEffect(() => {
-    const foundCards = faveCards.filter(
+    const foundCards = formattedFaves.filter(
       (fave) =>
-        fave.card.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (fave.card.colorCost1 === parseInt(manaFilter) ||
-          fave.card.colorCost2 === parseInt(manaFilter) ||
-          fave.card.colorCost3 === parseInt(manaFilter)),
+        fave.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (fave.colorCost1 === parseInt(manaFilter) ||
+          fave.colorCost2 === parseInt(manaFilter) ||
+          fave.colorCost3 === parseInt(manaFilter)),
     );
     setFilteredCards(foundCards);
-  }, [searchTerm, faveCards, manaFilter]);
+  }, [searchTerm, formattedFaves, manaFilter]);
 
   return (
     <>
-      {faveCards ? (
+      {formattedFaves ? (
         <>
           <h2>Favorites</h2>
           <FilterBar
@@ -53,8 +48,8 @@ export const Favorites = () => {
           <div className="favoriteCards">
             {filteredCards.map((faveObj) => {
               return (
-                <Link to={`/card/${faveObj.card.id}`}>
-                  <Card cardObj={faveObj.card} key={faveObj.card.id} />
+                <Link to={`/card/${faveObj.id}`}>
+                  <Card cardObj={faveObj} key={faveObj.id} />
                 </Link>
               );
             })}
