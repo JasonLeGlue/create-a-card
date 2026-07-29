@@ -28,10 +28,11 @@ export const Favorites = () => {
   useEffect(() => {
     const foundCards = formattedFaves.filter(
       (fave) =>
-        fave.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (fave.colorCost1 === parseInt(manaFilter) ||
-          fave.colorCost2 === parseInt(manaFilter) ||
-          fave.colorCost3 === parseInt(manaFilter)),
+        (fave.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          parseInt(manaFilter) === 0) ||
+        fave.colorCost1 === parseInt(manaFilter) ||
+        fave.colorCost2 === parseInt(manaFilter) ||
+        fave.colorCost3 === parseInt(manaFilter),
     );
     setFilteredCards(foundCards);
   }, [searchTerm, formattedFaves, manaFilter]);
