@@ -15,12 +15,18 @@ export const CardDetails = () => {
   }, []);
 
   const handleDelete = (event) => {
-    let userResponse = confirm("Are you sure you want to delete this card?");
+    const user = JSON.parse(localStorage.getItem("card_user"));
 
-    if (userResponse) {
-      deleteCardById(cardObj.id);
+    if (parseInt(user.id) === parseInt(cardId)) {
+      let userResponse = confirm("Are you sure you want to delete this card?");
+
+      if (userResponse) {
+        deleteCardById(cardObj.id);
+      } else {
+        return;
+      }
     } else {
-      return;
+      alert("You cannot delete another user's card.");
     }
   };
 
