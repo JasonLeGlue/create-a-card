@@ -8,7 +8,7 @@ export const Explore = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    getRecentCards().then(setCards);
+    getRecentCards(20).then(setCards);
   }, []);
 
   return (

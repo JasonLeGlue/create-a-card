@@ -19,9 +19,9 @@ export const deleteCardById = (cardId) => {
   });
 };
 
-export const getRecentCards = () => {
+export const getRecentCards = (limit) => {
   return fetch(
-    "http://localhost:8088/cards/?_sort=id&_order=desc&_limit=20&_expand=user",
+    `http://localhost:8088/cards/?_sort=id&_order=desc&_limit=${limit}&_expand=user`,
   ).then((res) => res.json());
 };
 

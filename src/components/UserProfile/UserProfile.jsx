@@ -5,6 +5,7 @@ import { getBinderByUserId } from "../../services/binderService.js";
 import { Link } from "react-router-dom";
 import { Card } from "../card/Card.jsx";
 import { getCardById } from "../../services/cardService.js";
+import "./UserProfile.css";
 
 export const UserProfile = () => {
   const { userId } = useParams({});
@@ -39,8 +40,8 @@ export const UserProfile = () => {
             <h3 className="username">{userObj.username}</h3>
             <p className="bio">{userObj.bioText}</p>
           </div>
+          <h2>{userObj.username}'s Binder</h2>
           <div className="binderContainer">
-            <h2>{userObj.username}'s Binder</h2>
             <div className="binder">
               {formattedBinder.map((binderObj) => (
                 <Link to={`/card/${binderObj.id}`}>

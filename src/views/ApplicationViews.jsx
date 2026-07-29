@@ -6,7 +6,9 @@ import { Favorites } from "../components/favorites/Favorites.jsx";
 import { Collection } from "../components/collection/Collection.jsx";
 import { CardForm } from "../components/forms/CardForm.jsx";
 import { BrowserRouter } from "react-router-dom";
+import { Welcome } from "../components/welcome/Welcome.jsx";
 import { CardDetails } from "../components/card/CardDetails.jsx";
+import { Register } from "../components/auth/Register.jsx";
 import { UserProfile } from "../components/UserProfile/UserProfile.jsx";
 
 export const ApplicationViews = () => {
@@ -27,6 +29,8 @@ export const ApplicationViews = () => {
             </>
           }
         >
+          <Route index element={<Welcome />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/collection" element={<Collection />} />
           <Route path="/favorites" element={<Favorites />} />
