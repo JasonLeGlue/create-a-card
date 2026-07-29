@@ -1,5 +1,6 @@
 import "./Card.css";
 import { getManaObjById } from "../../services/costService.js";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HTMLReactParser from "html-react-parser/lib/index";
 
@@ -47,7 +48,9 @@ export const Card = ({ cardObj }) => {
           <p>"{cardObj.quoteText}"</p>
         </div>
         <div className="bottomLine">
-          <p className="creatorUsername">{cardObj.user.username}</p>
+          <Link to={`/profile/${cardObj.userId}`} className="creatorUsername">
+            {cardObj.user.username}
+          </Link>
           <div className="powerToughness">
             <p>
               {cardObj.power} / {cardObj.toughness}

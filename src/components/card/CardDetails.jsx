@@ -4,6 +4,7 @@ import { deleteCardById, getCardById } from "../../services/cardService.js";
 import { addCardToBinder } from "../../services/binderService.js";
 import { addCardToFaves } from "../../services/faveService.js";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Card } from "./Card.jsx";
 
 export const CardDetails = () => {
