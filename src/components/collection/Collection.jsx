@@ -4,12 +4,14 @@ import { Card } from "../card/Card.jsx";
 import { FilterBar } from "../filter bar/FilterBar.jsx";
 import { Link } from "react-router-dom";
 import "./Collection.css";
+import { useNavigate } from "react-router-dom";
 
 export const Collection = () => {
   const [collectionCards, setCollectionCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [manaFilter, setManaFilter] = useState(0);
+  const navigate = useNavigate();
 
   const getAndSetCollection = () => {
     const cardUser = JSON.parse(localStorage.getItem("card_user"));
@@ -46,9 +48,14 @@ export const Collection = () => {
           <div className="collectionCards">
             {filteredCards.map((cardObj) => {
               return (
-                <Link to={`/card/${cardObj.id}`} key={cardObj.id}>
+                <div
+                  onClick={() => {
+                    navigate(`/card/${cardObj.id}`);
+                  }}
+                  key={cardObj.id}
+                >
                   <Card cardObj={cardObj} />
-                </Link>
+                </div>
               );
             })}
           </div>

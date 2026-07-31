@@ -48,7 +48,11 @@ export const Card = ({ cardObj }) => {
           <p>"{cardObj.quoteText}"</p>
         </div>
         <div className="bottomLine">
-          <Link to={`/profile/${cardObj.userId}`} className="creatorUsername">
+          <Link
+            to={`/profile/${cardObj.userId}`}
+            className="creatorUsername"
+            onClick={(event) => event.stopPropagation()}
+          >
             {cardObj.user.username}
           </Link>
           <div className="powerToughness">

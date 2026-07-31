@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUserById } from "../../services/userService.js";
 import { getBinderByUserId } from "../../services/binderService.js";
 import { Link } from "react-router-dom";
 import { Card } from "../card/Card.jsx";
+import { Navigate } from "react-router-dom";
 import { getCardById } from "../../services/cardService.js";
 import "./UserProfile.css";
 
@@ -11,6 +12,7 @@ export const UserProfile = () => {
   const { userId } = useParams({});
   const [userObj, setUserObj] = useState({});
   const [formattedBinder, setFormattedBinder] = useState([]);
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   getUserById(userId).then(setUserObj);
@@ -29,7 +31,7 @@ export const UserProfile = () => {
 
   useEffect(() => {
     getAndSetFormattedBinder();
-  }, []);
+  }, [userId]);
 
   return (
     <>
@@ -44,9 +46,14 @@ export const UserProfile = () => {
           <div className="binderContainer">
             <div className="binder">
               {formattedBinder.map((binderObj) => (
-                <Link to={`/card/${binderObj.id}`} key={binderObj.id}>
+                <div
+                  onClick={() => {
+                    navigate(`/card/${binderObj.id}`);
+                  }}
+                  key={binderObj.id}
+                >
                   <Card cardObj={binderObj} />
-                </Link>
+                </div>
               ))}
             </div>
           </div>

@@ -4,6 +4,7 @@ import { getFavesByUserId } from "../../services/faveService.js";
 import { getCardById } from "../../services/cardService.js";
 import { FilterBar } from "../filter bar/FilterBar.jsx";
 import { Link, useNavigate } from "react-router-dom";
+
 import "./Favorites.css";
 
 export const Favorites = () => {
@@ -11,6 +12,7 @@ export const Favorites = () => {
   const [filteredCards, setFilteredCards] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [manaFilter, setManaFilter] = useState(0);
+  const navigate = useNavigate();
 
   const getAndSetFaves = async () => {
     const cardUser = JSON.parse(localStorage.getItem("card_user"));
@@ -49,9 +51,14 @@ export const Favorites = () => {
           <div className="favoriteCards">
             {filteredCards.map((faveObj) => {
               return (
-                <Link to={`/card/${faveObj.id}`} key={faveObj.id}>
+                <div
+                  onClick={() => {
+                    navigate(`/card/${faveObj.id}`);
+                  }}
+                  key={faveObj.id}
+                >
                   <Card cardObj={faveObj} />
-                </Link>
+                </div>
               );
             })}
           </div>
