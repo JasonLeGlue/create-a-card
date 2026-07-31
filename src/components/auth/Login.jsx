@@ -22,7 +22,7 @@ export const Login = () => {
           }),
         );
 
-        navigate("/");
+        navigate("/explore");
       } else {
         window.alert("Invalid login");
       }

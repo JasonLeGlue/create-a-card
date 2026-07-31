@@ -46,8 +46,8 @@ export const Collection = () => {
           <div className="collectionCards">
             {filteredCards.map((cardObj) => {
               return (
-                <Link to={`/card/${cardObj.id}`}>
-                  <Card cardObj={cardObj} key={cardObj.id} />
+                <Link to={`/card/${cardObj.id}`} key={cardObj.id}>
+                  <Card cardObj={cardObj} />
                 </Link>
               );
             })}

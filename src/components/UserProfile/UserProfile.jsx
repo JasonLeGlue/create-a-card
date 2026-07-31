@@ -44,8 +44,8 @@ export const UserProfile = () => {
           <div className="binderContainer">
             <div className="binder">
               {formattedBinder.map((binderObj) => (
-                <Link to={`/card/${binderObj.id}`}>
-                  <Card cardObj={binderObj} key={binderObj.id} />
+                <Link to={`/card/${binderObj.id}`} key={binderObj.id}>
+                  <Card cardObj={binderObj} />
                 </Link>
               ))}
             </div>

@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import { deleteCardById, getCardById } from "../../services/cardService.js";
 import { addCardToBinder } from "../../services/binderService.js";
 import { addCardToFaves } from "../../services/faveService.js";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Card } from "./Card.jsx";
 
 export const CardDetails = () => {
   const [cardObj, setCardObj] = useState(null);
   const { cardId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCardById(cardId).then(setCardObj);
@@ -18,11 +19,12 @@ export const CardDetails = () => {
   const handleDelete = (event) => {
     const user = JSON.parse(localStorage.getItem("card_user"));
 
-    if (parseInt(user.id) === parseInt(cardId)) {
+    if (parseInt(user.id) === parseInt(cardObj.userId)) {
       let userResponse = confirm("Are you sure you want to delete this card?");
 
       if (userResponse) {
         deleteCardById(cardObj.id);
+        navigate("/collection");
       } else {
         return;
       }
@@ -73,8 +75,8 @@ export const CardDetails = () => {
           <div className="displayCenterContent">
             <Card cardObj={cardObj}></Card>
             <p className="description">Description box</p>
-            <button type="button" className="removeButton">
-              Remove
+            <button type="button" className="editButton">
+              Edit
             </button>
           </div>
         </>
