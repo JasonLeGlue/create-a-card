@@ -49,8 +49,8 @@ export const CardForm = () => {
     getColorManaCosts().then(setColorManaCosts);
   }, []);
 
-  //navigate to card details page when created
   const handleCreation = (event) => {
+    const cardUser = JSON.parse(localStorage.getItem("card_user"));
     const editedCard = {
       name: card.name,
       colorlessCost: card.colorlessCost,
@@ -65,6 +65,7 @@ export const CardForm = () => {
       htmlCss: card.htmlCss,
       power: card.power,
       toughness: card.toughness,
+      userId: cardUser.id,
     };
 
     createCard(editedCard);
