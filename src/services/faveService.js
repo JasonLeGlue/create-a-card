@@ -13,3 +13,10 @@ export const getFavesByUserId = (userId) => {
     `http://localhost:8088/favorites?userId=${userId}&_expand=card`,
   ).then((res) => res.json());
 };
+
+const deleteFaveByUserIdAndCardId = (userId, cardId) => {
+  return fetch(
+    `http://localhost:8088/favorites?userId=${userId}&cardId=${cardId}`,
+    { method: "DELETE" },
+  );
+};

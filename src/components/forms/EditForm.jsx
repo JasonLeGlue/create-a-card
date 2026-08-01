@@ -76,6 +76,7 @@ export const EditForm = () => {
 
         <label>Colorless Mana Cost:</label>
         <select
+          value={card.colorlessCost}
           onChange={(event) => {
             const copy = { ...card };
             copy.colorlessCost = parseInt(event.target.value);
@@ -94,6 +95,7 @@ export const EditForm = () => {
 
         <label>Color Mana Cost 1:</label>
         <select
+          value={card.colorCost1}
           onChange={(event) => {
             const copy = { ...card };
             copy.colorCost1 = parseInt(event.target.value);
@@ -112,6 +114,7 @@ export const EditForm = () => {
 
         <label>Color Mana Cost 2:</label>
         <select
+          value={card.colorCost2}
           onChange={(event) => {
             const copy = { ...card };
             copy.colorCost2 = parseInt(event.target.value);
@@ -130,6 +133,7 @@ export const EditForm = () => {
 
         <label>Color Mana Cost 3:</label>
         <select
+          value={card.colorCost3}
           onChange={(event) => {
             const copy = { ...card };
             copy.colorCost3 = parseInt(event.target.value);

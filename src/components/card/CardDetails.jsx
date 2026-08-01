@@ -1,8 +1,14 @@
 import "./CardDetails.css";
 import { useState, useEffect } from "react";
 import { deleteCardById, getCardById } from "../../services/cardService.js";
-import { addCardToBinder } from "../../services/binderService.js";
-import { addCardToFaves } from "../../services/faveService.js";
+import {
+  addCardToBinder,
+  deleteBinderByUserIdAndCardId,
+} from "../../services/binderService.js";
+import {
+  addCardToFaves,
+  deleteFaveByUserIdAndCardId,
+} from "../../services/faveService.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Card } from "./Card.jsx";
@@ -24,6 +30,8 @@ export const CardDetails = () => {
 
       if (userResponse) {
         deleteCardById(cardObj.id);
+        deleteBinderByUserIdAndCardId(user.id, cardObj.id);
+        deleteFaveByUserIdAndCardId(user.id, cardObj.id);
         navigate("/collection");
       } else {
         return;
