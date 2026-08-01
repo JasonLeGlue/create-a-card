@@ -13,10 +13,18 @@ export const Card = ({ cardObj }) => {
 
   useEffect(() => {
     if (cardObj.id) {
-      getManaObjById(cardObj.colorlessCost).then(setColorlessMana);
-      getManaObjById(cardObj.colorCost1).then(setColorMana1);
-      getManaObjById(cardObj.colorCost2).then(setColorMana2);
-      getManaObjById(cardObj.colorCost3).then(setColorMana3);
+      if (cardObj.colorlessCost != 0) {
+        getManaObjById(cardObj.colorlessCost).then(setColorlessMana);
+      }
+      if (cardObj.colorCost1 != 0) {
+        getManaObjById(cardObj.colorCost1).then(setColorMana1);
+      }
+      if (cardObj.colorCost2) {
+        getManaObjById(cardObj.colorCost2).then(setColorMana2);
+      }
+      if (cardObj.colorCost3) {
+        getManaObjById(cardObj.colorCost3).then(setColorMana3);
+      }
     }
   }, []);
 

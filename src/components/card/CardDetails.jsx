@@ -75,7 +75,13 @@ export const CardDetails = () => {
           <div className="displayCenterContent">
             <Card cardObj={cardObj}></Card>
             <p className="description">Description box</p>
-            <button type="button" className="editButton">
+            <button
+              type="button"
+              className="editButton"
+              onClick={() => {
+                navigate(`/edit/${cardId}`);
+              }}
+            >
               Edit
             </button>
           </div>

@@ -25,15 +25,17 @@ export const Collection = () => {
   }, []);
 
   useEffect(() => {
-    const foundCards = collectionCards.filter(
-      (card) =>
-        (card.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-          parseInt(manaFilter) === 0) ||
-        card.colorCost1 === parseInt(manaFilter) ||
-        card.colorCost2 === parseInt(manaFilter) ||
-        card.colorCost3 === parseInt(manaFilter),
-    );
-    setFilteredCards(foundCards);
+    if (collectionCards.length > 0) {
+      const foundCards = collectionCards.filter(
+        (card) =>
+          card.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          (manaFilter == 0 ||
+            card.colorCost1 === parseInt(manaFilter) ||
+            card.colorCost2 === parseInt(manaFilter) ||
+            card.colorCost3 === parseInt(manaFilter)),
+      );
+      setFilteredCards(foundCards);
+    }
   }, [searchTerm, collectionCards, manaFilter]);
 
   return (

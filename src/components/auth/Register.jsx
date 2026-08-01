@@ -5,9 +5,12 @@ import { createUser, getUserByEmail } from "../../services/userService";
 
 export const Register = (props) => {
   const [customer, setCustomer] = useState({
+    username: "",
     email: "",
-    fullName: "",
-    isStaff: false,
+    password: "",
+    profileImageUrl: "",
+    bioText: "",
+    adminStatus: false,
   });
   let navigate = useNavigate();
 
@@ -18,7 +21,11 @@ export const Register = (props) => {
           "card_user",
           JSON.stringify({
             id: createdUser.id,
-            staff: createdUser.isStaff,
+            email: createdUser.email,
+            password: createdUser.password,
+            profileImageUrl: createdUser.profileImageUrl,
+            bioText: createdUser.bioText,
+            adminStatus: createdUser.adminStatus,
           }),
         );
 
@@ -49,16 +56,16 @@ export const Register = (props) => {
   return (
     <main style={{ textAlign: "center" }}>
       <form className="form-login" onSubmit={handleRegister}>
-        <h1>Honey Rae Repairs</h1>
+        <h1>Create a Card</h1>
         <h2>Please Register</h2>
         <fieldset>
           <div className="form-group">
             <input
               onChange={updateCustomer}
               type="text"
-              id="fullName"
+              id="username"
               className="form-control"
-              placeholder="Enter your name"
+              placeholder="Enter your username"
               required
               autoFocus
             />
@@ -78,17 +85,53 @@ export const Register = (props) => {
         </fieldset>
         <fieldset>
           <div className="form-group">
+            <input
+              onChange={updateCustomer}
+              type="password"
+              id="password"
+              className="form-control"
+              placeholder="Password"
+              required
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <input
+              onChange={updateCustomer}
+              type="profileImageUrl"
+              id="profileImageUrl"
+              className="form-control"
+              placeholder="Paste profile image url"
+              required
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <input
+              onChange={updateCustomer}
+              type="bioText"
+              id="bioText"
+              className="form-control"
+              placeholder="Write your bio."
+              required
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
             <label>
               <input
                 onChange={(evt) => {
                   const copy = { ...customer };
-                  copy.isStaff = evt.target.checked;
+                  copy.adminStatus = evt.target.checked;
                   setCustomer(copy);
                 }}
                 type="checkbox"
-                id="isStaff"
+                id="adminStatus"
               />
-              I am an employee{" "}
+              I am an admin{" "}
             </label>
           </div>
         </fieldset>

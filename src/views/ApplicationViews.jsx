@@ -10,14 +10,11 @@ import { Welcome } from "../components/welcome/Welcome.jsx";
 import { CardDetails } from "../components/card/CardDetails.jsx";
 import { Register } from "../components/auth/Register.jsx";
 import { UserProfile } from "../components/UserProfile/UserProfile.jsx";
+import { EditForm } from "../components/forms/EditForm.jsx";
 
 export const ApplicationViews = () => {
   return (
     <>
-      {/* <BrowserRouter>
-        <Collection />
-      </BrowserRouter> */}
-
       <Routes>
         <Route
           path="/"
@@ -25,7 +22,6 @@ export const ApplicationViews = () => {
             <>
               <NavBar />
               <Outlet />
-              {/* Add welcome component w/ index route as child */}
             </>
           }
         >
@@ -35,6 +31,9 @@ export const ApplicationViews = () => {
           <Route path="/collection" element={<Collection />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/create" element={<CardForm />} />
+          <Route path="/edit">
+            <Route path=":cardId" element={<EditForm />} />
+          </Route>
           <Route path="card">
             <Route path=":cardId" element={<CardDetails />} />
           </Route>

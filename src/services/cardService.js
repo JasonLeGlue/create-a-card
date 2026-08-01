@@ -7,6 +7,17 @@ export const createCard = (cardObj) => {
     body: JSON.stringify(cardObj),
   });
 };
+
+export const editCard = (cardObj, cardId) => {
+  return fetch(`http://localhost:8088/cards/${cardId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(cardObj),
+  });
+};
+
 export const getCardById = (cardId) => {
   return fetch(`http://localhost:8088/cards/${cardId}?_expand=user`).then(
     (res) => res.json(),

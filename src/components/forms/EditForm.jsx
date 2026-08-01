@@ -3,29 +3,15 @@ import {
   getColorManaCosts,
   getColorlessManaCosts,
 } from "../../services/costService.js";
-import { createCard } from "../../services/cardService.js";
-
-import { Card } from "../card/Card.jsx";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { editCard } from "../../services/cardService.js";
 import { getCardById } from "../../services/cardService.js";
 
-export const CardForm = () => {
+export const EditForm = () => {
+  const { cardId } = useParams();
+  const navigate = useNavigate();
   const [card, setCard] = useState({
-    name: "",
-    colorlessCost: 0,
-    colorCost1: 0,
-    colorCost2: 0,
-    colorCost3: 0,
-    typeLine: "",
-    abilityText: "",
-    descriptionText: "",
-    quoteText: "",
-    imageUrl: "",
-    htmlCss: "",
-    power: 0,
-    toughness: 0,
-  });
-
-  const [cardObj, setCardObj] = useState({
     name: "",
     colorlessCost: 0,
     colorCost1: 0,
@@ -47,12 +33,14 @@ export const CardForm = () => {
   useEffect(() => {
     getColorlessManaCosts().then(setColorlessManaCosts);
     getColorManaCosts().then(setColorManaCosts);
+    getCardById(cardId).then(setCard);
   }, []);
 
   //navigate to card details page when created
-  const handleCreation = (event) => {
+  const handleEdit = (event) => {
     const editedCard = {
       name: card.name,
+      userId: card.userId,
       colorlessCost: card.colorlessCost,
       colorCost1: card.colorCost1,
       colorCost2: card.colorCost2,
@@ -67,7 +55,8 @@ export const CardForm = () => {
       toughness: card.toughness,
     };
 
-    createCard(editedCard);
+    editCard(editedCard, cardId);
+    navigate(`/card/${cardId}`);
   };
 
   return (
@@ -89,7 +78,7 @@ export const CardForm = () => {
         <select
           onChange={(event) => {
             const copy = { ...card };
-            copy.colorlessCost = event.target.value;
+            copy.colorlessCost = parseInt(event.target.value);
             setCard(copy);
           }}
         >
@@ -107,7 +96,7 @@ export const CardForm = () => {
         <select
           onChange={(event) => {
             const copy = { ...card };
-            copy.colorCost1 = event.target.value;
+            copy.colorCost1 = parseInt(event.target.value);
             setCard(copy);
           }}
         >
@@ -125,7 +114,7 @@ export const CardForm = () => {
         <select
           onChange={(event) => {
             const copy = { ...card };
-            copy.colorCost2 = event.target.value;
+            copy.colorCost2 = parseInt(event.target.value);
             setCard(copy);
           }}
         >
@@ -143,7 +132,7 @@ export const CardForm = () => {
         <select
           onChange={(event) => {
             const copy = { ...card };
-            copy.colorCost3 = event.target.value;
+            copy.colorCost3 = parseInt(event.target.value);
             setCard(copy);
           }}
         >
@@ -237,7 +226,13 @@ export const CardForm = () => {
             setCard(copy);
           }}
         />
-        <button onClick={handleCreation}>Create Card</button>
+        <button
+          onClick={() => {
+            handleEdit();
+          }}
+        >
+          Edit Card
+        </button>
       </form>
     </>
   );

@@ -5,7 +5,7 @@ export const FilterBar = ({ setSearchTerm, setManaFilter }) => {
 
   useEffect(() => {
     getColorManaCosts().then(setColorMana);
-  });
+  }, []);
 
   return (
     <div className="filter-bar">
@@ -17,7 +17,7 @@ export const FilterBar = ({ setSearchTerm, setManaFilter }) => {
         placeholder="Search Cards"
         className="cardSearch"
       ></input>
-      <label for="manaFilter">Filter by mana type:</label>
+      <label htmlFor="manaFilter">Filter by mana type:</label>
       <select
         id="manaFilter"
         name="manaFilter"
