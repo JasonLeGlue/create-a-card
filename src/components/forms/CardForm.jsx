@@ -7,8 +7,10 @@ import { createCard } from "../../services/cardService.js";
 
 import { Card } from "../card/Card.jsx";
 import { getCardById } from "../../services/cardService.js";
+import { useNavigate } from "react-router-dom";
 
 export const CardForm = () => {
+  const navigate = useNavigate();
   const [card, setCard] = useState({
     name: "",
     colorlessCost: 0,
@@ -69,6 +71,7 @@ export const CardForm = () => {
     };
 
     createCard(editedCard);
+    navigate("/collection");
   };
 
   return (

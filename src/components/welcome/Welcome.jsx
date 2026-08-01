@@ -21,9 +21,14 @@ export const Welcome = () => {
       <div className="cardHolder">
         {sampleCards.map((cardObj) => {
           return (
-            <Link to={`/card/${cardObj.id}`}>
+            <div
+              onClick={() => {
+                navigate(`/card/${faveObj.id}`);
+              }}
+              key={cardObj.id}
+            >
               <Card cardObj={cardObj} key={cardObj.id} />
-            </Link>
+            </div>
           );
         })}
       </div>

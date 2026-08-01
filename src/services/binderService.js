@@ -14,7 +14,7 @@ export const getBinderByUserId = (userId) => {
   ).then((res) => res.json());
 };
 
-const deleteBinderByUserIdAndCardId = (userId, cardId) => {
+export const deleteBinderByUserIdAndCardId = (userId, cardId) => {
   return fetch(
     `http://localhost:8088/binders?userId=${userId}&cardId=${cardId}`,
     { method: "DELETE" },

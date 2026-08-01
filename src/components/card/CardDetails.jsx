@@ -41,6 +41,15 @@ export const CardDetails = () => {
     }
   };
 
+  const handleEdit = (event) => {
+    const user = JSON.parse(localStorage.getItem("card_user"));
+    if (user.id === cardObj.userId) {
+      navigate(`/edit/${cardId}`);
+    } else {
+      alert("You cannot edit another user's card.");
+    }
+  };
+
   const handleSave = (event) => {
     const user = JSON.parse(localStorage.getItem("card_user"));
     const data = { userId: user.id, cardId: cardObj.id };
@@ -83,13 +92,7 @@ export const CardDetails = () => {
           <div className="displayCenterContent">
             <Card cardObj={cardObj}></Card>
             <p className="description">Description box</p>
-            <button
-              type="button"
-              className="editButton"
-              onClick={() => {
-                navigate(`/edit/${cardId}`);
-              }}
-            >
+            <button type="button" className="editButton" onClick={handleEdit}>
               Edit
             </button>
           </div>

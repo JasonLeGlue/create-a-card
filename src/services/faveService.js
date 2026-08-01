@@ -14,7 +14,7 @@ export const getFavesByUserId = (userId) => {
   ).then((res) => res.json());
 };
 
-const deleteFaveByUserIdAndCardId = (userId, cardId) => {
+export const deleteFaveByUserIdAndCardId = (userId, cardId) => {
   return fetch(
     `http://localhost:8088/favorites?userId=${userId}&cardId=${cardId}`,
     { method: "DELETE" },
